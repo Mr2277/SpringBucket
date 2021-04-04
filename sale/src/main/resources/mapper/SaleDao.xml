@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.child.sale.dao.SaleDao">
+
+    <resultMap id="BaseResultMap" type="com.child.sale.entity.Sale">
+        <!--@Table sale-->
+        <result property="id" column="ID" jdbcType="OTHER"/>
+        <result property="ymd" column="YMD" jdbcType="VARCHAR"/>
+        <result property="region" column="REGION" jdbcType="VARCHAR"/>
+        <result property="formats" column="FORMATS" jdbcType="VARCHAR"/>
+        <result property="stores" column="STORES" jdbcType="VARCHAR"/>
+        <result property="storename" column="STORENAME" jdbcType="VARCHAR"/>
+        <result property="bill" column="BILL" jdbcType="VARCHAR"/>
+        <result property="vipid" column="VIPID" jdbcType="VARCHAR"/>
+        <result property="vipAge" column="VIP_AGE" jdbcType="VARCHAR"/>
+        <result property="vipSex" column="VIP_SEX" jdbcType="VARCHAR"/>
+        <result property="shopid" column="SHOPID" jdbcType="VARCHAR"/>
+        <result property="shopname" column="SHOPNAME" jdbcType="VARCHAR"/>
+        <result property="deptid" column="DEPTID" jdbcType="VARCHAR"/>
+        <result property="deptname" column="DEPTNAME" jdbcType="VARCHAR"/>
+        <result property="classid3" column="CLASSID3" jdbcType="VARCHAR"/>
+        <result property="nameClass3" column="NAME_CLASS3" jdbcType="VARCHAR"/>
+        <result property="classid4" column="CLASSID4" jdbcType="VARCHAR"/>
+        <result property="nameClass4" column="NAME_CLASS4" jdbcType="VARCHAR"/>
+        <result property="classid5" column="CLASSID5" jdbcType="VARCHAR"/>
+        <result property="nameClass5" column="NAME_CLASS5" jdbcType="VARCHAR"/>
+        <result property="standards" column="STANDARDS" jdbcType="VARCHAR"/>
+        <result property="unitSale" column="UNIT_SALE" jdbcType="VARCHAR"/>
+        <result property="timeDef" column="TIME_DEF" jdbcType="VARCHAR"/>
+        <result property="priceCom" column="PRICE_COM" jdbcType="VARCHAR"/>
+        <result property="priceMust" column="PRICE_MUST" jdbcType="VARCHAR"/>
+        <result property="priceSalechg" column="PRICE_SALECHG" jdbcType="VARCHAR"/>
+        <result property="numSale" column="NUM_SALE" jdbcType="VARCHAR"/>
+        <result property="valueSale" column="VALUE_SALE" jdbcType="VARCHAR"/>
+        <result property="valueSaleAfterdisc" column="VALUE_SALE_AFTERDISC" jdbcType="VARCHAR"/>
+        <result property="isrtn" column="ISRTN" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="BaseResultMap">
+        select
+          ID, YMD, REGION, FORMATS, STORES, STORENAME, BILL, VIPID, VIP_AGE, VIP_SEX, SHOPID, SHOPNAME, DEPTID, DEPTNAME, CLASSID3, NAME_CLASS3, CLASSID4, NAME_CLASS4, CLASSID5, NAME_CLASS5, STANDARDS, UNIT_SALE, TIME_DEF, PRICE_COM, PRICE_MUST, PRICE_SALECHG, NUM_SALE, VALUE_SALE, VALUE_SALE_AFTERDISC, ISRTN
+        from mall.sale
+        where ID = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="BaseResultMap">
+        select
+          ID, YMD, REGION, FORMATS, STORES, STORENAME, BILL, VIPID, VIP_AGE, VIP_SEX, SHOPID, SHOPNAME, DEPTID, DEPTNAME, CLASSID3, NAME_CLASS3, CLASSID4, NAME_CLASS4, CLASSID5, NAME_CLASS5, STANDARDS, UNIT_SALE, TIME_DEF, PRICE_COM, PRICE_MUST, PRICE_SALECHG, NUM_SALE, VALUE_SALE, VALUE_SALE_AFTERDISC, ISRTN
+        from mall.sale
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="BaseResultMap">
+        select
+          ID, YMD, REGION, FORMATS, STORES, STORENAME, BILL, VIPID, VIP_AGE, VIP_SEX, SHOPID, SHOPNAME, DEPTID, DEPTNAME, CLASSID3, NAME_CLASS3, CLASSID4, NAME_CLASS4, CLASSID5, NAME_CLASS5, STANDARDS, UNIT_SALE, TIME_DEF, PRICE_COM, PRICE_MUST, PRICE_SALECHG, NUM_SALE, VALUE_SALE, VALUE_SALE_AFTERDISC, ISRTN
+        from mall.sale
+        <where>
+            <if test="id != null">
+                and ID = #{id}
+            </if>
+            <if test="ymd != null and ymd != ''">
+                and YMD = #{ymd}
+            </if>
+            <if test="region != null and region != ''">
+                and REGION = #{region}
+            </if>
+            <if test="formats != null and formats != ''">
+                and FORMATS = #{formats}
+            </if>
+            <if test="stores != null and stores != ''">
+                and STORES = #{stores}
+            </if>
+            <if test="storename != null and storename != ''">
+                and STORENAME = #{storename}
+            </if>
+            <if test="bill != null and bill != ''">
+                and BILL = #{bill}
+            </if>
+            <if test="vipid != null and vipid != ''">
+                and VIPID = #{vipid}
+            </if>
+            <if test="vipAge != null and vipAge != ''">
+                and VIP_AGE = #{vipAge}
+            </if>
+            <if test="vipSex != null and vipSex != ''">
+                and VIP_SEX = #{vipSex}
+            </if>
+            <if test="shopid != null and shopid != ''">
+                and SHOPID = #{shopid}
+            </if>
+            <if test="shopname != null and shopname != ''">
+                and SHOPNAME = #{shopname}
+            </if>
+            <if test="deptid != null and deptid != ''">
+                and DEPTID = #{deptid}
+            </if>
+            <if test="deptname != null and deptname != ''">
+                and DEPTNAME = #{deptname}
+            </if>
+            <if test="classid3 != null and classid3 != ''">
+                and CLASSID3 = #{classid3}
+            </if>
+            <if test="nameClass3 != null and nameClass3 != ''">
+                and NAME_CLASS3 = #{nameClass3}
+            </if>
+            <if test="classid4 != null and classid4 != ''">
+                and CLASSID4 = #{classid4}
+            </if>
+            <if test="nameClass4 != null and nameClass4 != ''">
+                and NAME_CLASS4 = #{nameClass4}
+            </if>
+            <if test="classid5 != null and classid5 != ''">
+                and CLASSID5 = #{classid5}
+            </if>
+            <if test="nameClass5 != null and nameClass5 != ''">
+                and NAME_CLASS5 = #{nameClass5}
+            </if>
+            <if test="standards != null and standards != ''">
+                and STANDARDS = #{standards}
+            </if>
+            <if test="unitSale != null and unitSale != ''">
+                and UNIT_SALE = #{unitSale}
+            </if>
+            <if test="timeDef != null and timeDef != ''">
+                and TIME_DEF = #{timeDef}
+            </if>
+            <if test="priceCom != null and priceCom != ''">
+                and PRICE_COM = #{priceCom}
+            </if>
+            <if test="priceMust != null and priceMust != ''">
+                and PRICE_MUST = #{priceMust}
+            </if>
+            <if test="priceSalechg != null and priceSalechg != ''">
+                and PRICE_SALECHG = #{priceSalechg}
+            </if>
+            <if test="numSale != null and numSale != ''">
+                and NUM_SALE = #{numSale}
+            </if>
+            <if test="valueSale != null and valueSale != ''">
+                and VALUE_SALE = #{valueSale}
+            </if>
+            <if test="valueSaleAfterdisc != null and valueSaleAfterdisc != ''">
+                and VALUE_SALE_AFTERDISC = #{valueSaleAfterdisc}
+            </if>
+            <if test="isrtn != null and isrtn != ''">
+                and ISRTN = #{isrtn}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into mall.sale(YMD, REGION, FORMATS, STORES, STORENAME, BILL, VIPID, VIP_AGE, VIP_SEX, SHOPID, SHOPNAME, DEPTID, DEPTNAME, CLASSID3, NAME_CLASS3, CLASSID4, NAME_CLASS4, CLASSID5, NAME_CLASS5, STANDARDS, UNIT_SALE, TIME_DEF, PRICE_COM, PRICE_MUST, PRICE_SALECHG, NUM_SALE, VALUE_SALE, VALUE_SALE_AFTERDISC, ISRTN)
+        values (#{ymd}, #{region}, #{formats}, #{stores}, #{storename}, #{bill}, #{vipid}, #{vipAge}, #{vipSex}, #{shopid}, #{shopname}, #{deptid}, #{deptname}, #{classid3}, #{nameClass3}, #{classid4}, #{nameClass4}, #{classid5}, #{nameClass5}, #{standards}, #{unitSale}, #{timeDef}, #{priceCom}, #{priceMust}, #{priceSalechg}, #{numSale}, #{valueSale}, #{valueSaleAfterdisc}, #{isrtn})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update mall.sale
+        <set>
+            <if test="ymd != null and ymd != ''">
+                YMD = #{ymd},
+            </if>
+            <if test="region != null and region != ''">
+                REGION = #{region},
+            </if>
+            <if test="formats != null and formats != ''">
+                FORMATS = #{formats},
+            </if>
+            <if test="stores != null and stores != ''">
+                STORES = #{stores},
+            </if>
+            <if test="storename != null and storename != ''">
+                STORENAME = #{storename},
+            </if>
+            <if test="bill != null and bill != ''">
+                BILL = #{bill},
+            </if>
+            <if test="vipid != null and vipid != ''">
+                VIPID = #{vipid},
+            </if>
+            <if test="vipAge != null and vipAge != ''">
+                VIP_AGE = #{vipAge},
+            </if>
+            <if test="vipSex != null and vipSex != ''">
+                VIP_SEX = #{vipSex},
+            </if>
+            <if test="shopid != null and shopid != ''">
+                SHOPID = #{shopid},
+            </if>
+            <if test="shopname != null and shopname != ''">
+                SHOPNAME = #{shopname},
+            </if>
+            <if test="deptid != null and deptid != ''">
+                DEPTID = #{deptid},
+            </if>
+            <if test="deptname != null and deptname != ''">
+                DEPTNAME = #{deptname},
+            </if>
+            <if test="classid3 != null and classid3 != ''">
+                CLASSID3 = #{classid3},
+            </if>
+            <if test="nameClass3 != null and nameClass3 != ''">
+                NAME_CLASS3 = #{nameClass3},
+            </if>
+            <if test="classid4 != null and classid4 != ''">
+                CLASSID4 = #{classid4},
+            </if>
+            <if test="nameClass4 != null and nameClass4 != ''">
+                NAME_CLASS4 = #{nameClass4},
+            </if>
+            <if test="classid5 != null and classid5 != ''">
+                CLASSID5 = #{classid5},
+            </if>
+            <if test="nameClass5 != null and nameClass5 != ''">
+                NAME_CLASS5 = #{nameClass5},
+            </if>
+            <if test="standards != null and standards != ''">
+                STANDARDS = #{standards},
+            </if>
+            <if test="unitSale != null and unitSale != ''">
+                UNIT_SALE = #{unitSale},
+            </if>
+            <if test="timeDef != null and timeDef != ''">
+                TIME_DEF = #{timeDef},
+            </if>
+            <if test="priceCom != null and priceCom != ''">
+                PRICE_COM = #{priceCom},
+            </if>
+            <if test="priceMust != null and priceMust != ''">
+                PRICE_MUST = #{priceMust},
+            </if>
+            <if test="priceSalechg != null and priceSalechg != ''">
+                PRICE_SALECHG = #{priceSalechg},
+            </if>
+            <if test="numSale != null and numSale != ''">
+                NUM_SALE = #{numSale},
+            </if>
+            <if test="valueSale != null and valueSale != ''">
+                VALUE_SALE = #{valueSale},
+            </if>
+            <if test="valueSaleAfterdisc != null and valueSaleAfterdisc != ''">
+                VALUE_SALE_AFTERDISC = #{valueSaleAfterdisc},
+            </if>
+            <if test="isrtn != null and isrtn != ''">
+                ISRTN = #{isrtn},
+            </if>
+        </set>
+        where ID = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from mall.sale where ID = #{id}
+    </delete>
+
+</mapper>
