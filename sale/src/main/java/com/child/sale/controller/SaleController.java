@@ -2,8 +2,11 @@ package com.child.sale.controller;
 
 import com.child.sale.entity.Sale;
 import com.child.sale.service.SaleService;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 
 /**
@@ -30,6 +33,18 @@ public class SaleController {
     @GetMapping("/selectOne")
     public Sale selectOne(@RequestParam("id") Integer id) {
         return this.saleService.queryById(id);
+    }
+
+    /**
+     * 分页查询
+     *
+     * @param pageSize
+     * @param pageNo
+     * @return 分页数据
+     */
+    @GetMapping("/selectByPage")
+    public PageInfo<Sale> selectByPage(@RequestParam("pageSize") Integer pageSize, @RequestParam("pageNo") Integer pageNo) {
+        return this.saleService.selectByPage(pageSize, pageNo);
     }
 
 }

@@ -257,4 +257,8 @@
         delete from mall.sale where ID = #{id}
     </delete>
 
+    <select id="selectByPage" resultMap="BaseResultMap">
+        select * from sale;
+    </select>
+
 </mapper>

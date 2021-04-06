@@ -1,18 +1,17 @@
 package com.child.sale.service;
 
-import com.child.sale.entity.Sale;
+import com.child.sale.entity.RocketMessageInfo;
 import com.github.pagehelper.Page;
-import com.github.pagehelper.PageInfo;
 
 import java.util.List;
 
 /**
- * (Sale)表服务接口
+ * (RocketMessageInfo)表服务接口
  *
  * @author makejava
- * @since 2021-04-04 21:20:15
+ * @since 2021-04-06 20:15:29
  */
-public interface SaleService {
+public interface RocketMessageInfoService {
 
     /**
      * 通过ID查询单条数据
@@ -20,7 +19,7 @@ public interface SaleService {
      * @param id 主键
      * @return 实例对象
      */
-    Sale queryById(Object id);
+    RocketMessageInfo queryById(Object id);
 
     /**
      * 查询多条数据
@@ -29,23 +28,23 @@ public interface SaleService {
      * @param limit 查询条数
      * @return 对象列表
      */
-    List<Sale> queryAllByLimit(int offset, int limit);
+    List<RocketMessageInfo> queryAllByLimit(int offset, int limit);
 
     /**
      * 新增数据
      *
-     * @param sale 实例对象
+     * @param rocketMessageInfo 实例对象
      * @return 实例对象
      */
-    Sale insert(Sale sale);
+    RocketMessageInfo insert(RocketMessageInfo rocketMessageInfo);
 
     /**
      * 修改数据
      *
-     * @param sale 实例对象
+     * @param rocketMessageInfo 实例对象
      * @return 实例对象
      */
-    Sale update(Sale sale);
+    RocketMessageInfo update(RocketMessageInfo rocketMessageInfo);
 
     /**
      * 通过主键删除数据
@@ -55,13 +54,6 @@ public interface SaleService {
      */
     boolean deleteById(Object id);
 
-    /**
-     * 分页查询
-     *
-     * @param pageSize 当前页大小
-     * @param pageNo 当前页号
-     * @return 是否成功
-     */
-    PageInfo<Sale> selectByPage(Integer pageSize, Integer pageNo);
+    Page<RocketMessageInfo> selectAll(Integer pageNo, Integer pageSize);
 
 }

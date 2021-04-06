@@ -3,6 +3,8 @@ package com.child.sale.service.impl;
 import com.child.sale.entity.Sale;
 import com.child.sale.dao.SaleDao;
 import com.child.sale.service.SaleService;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -76,5 +78,13 @@ public class SaleServiceImpl implements SaleService {
     @Override
     public boolean deleteById(Object id) {
         return this.saleDao.deleteById(id) > 0;
+    }
+
+    @Override
+    public PageInfo<Sale> selectByPage(Integer pageSize, Integer pageNo) {
+        PageHelper.startPage(pageNo, pageSize);
+        List<Sale> sales = saleDao.selectByPage();
+        PageInfo<Sale> pageInfo = new PageInfo<>(sales);
+        return pageInfo;
     }
 }
