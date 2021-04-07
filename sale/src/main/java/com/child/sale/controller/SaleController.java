@@ -47,4 +47,9 @@ public class SaleController {
         return this.saleService.selectByPage(pageSize, pageNo);
     }
 
+    @GetMapping("/slectByLimit")
+    public List<Sale> selectByLimit(@RequestParam("limit") Integer limit, @RequestParam("offset") Integer offset) {
+        return this.saleService.queryAllByLimit(offset, limit);
+    }
+
 }

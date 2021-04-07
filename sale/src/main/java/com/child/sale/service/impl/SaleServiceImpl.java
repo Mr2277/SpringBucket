@@ -2,6 +2,7 @@ package com.child.sale.service.impl;
 
 import com.child.sale.entity.Sale;
 import com.child.sale.dao.SaleDao;
+import com.child.sale.entity.ShoppingFlow;
 import com.child.sale.service.SaleService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * (Sale)表服务实现类
@@ -42,8 +44,26 @@ public class SaleServiceImpl implements SaleService {
      */
     @Override
     public List<Sale> queryAllByLimit(int offset, int limit) {
-        return this.saleDao.queryAllByLimit(offset, limit);
+        List<Sale> sales = saleDao.queryAllByLimit(offset, limit);
+        List<ShoppingFlow> shoppingFlows = sales.stream().map(sale -> transfor(sale))
+                .collect(Collectors.toList());
+        System.out.println(shoppingFlows.size());
+        System.out.println(shoppingFlows.size());
+        return sales;
     }
+
+    public ShoppingFlow transfor(Sale sale) {
+        ShoppingFlow shoppingFlow = new ShoppingFlow();
+        shoppingFlow.setBill(sale.getBill());
+        shoppingFlow.setDeptId(sale.getDeptid());
+        shoppingFlow.setDeptName(sale.getDeptname());
+        shoppingFlow.setNumSale(sale.getNumSale());
+        shoppingFlow.setStandards(sale.getStandards());
+        shoppingFlow.setValueSale(sale.getValueSale());
+        shoppingFlow.setVipId(sale.getVipid());
+        return shoppingFlow;
+    }
+
 
     /**
      * 新增数据

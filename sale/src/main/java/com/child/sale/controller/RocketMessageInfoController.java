@@ -2,7 +2,9 @@ package com.child.sale.controller;
 
 import com.child.sale.entity.RocketMessageInfo;
 import com.child.sale.service.RocketMessageInfoService;
+import com.child.sale.service.rocketmq.SaleProducer;
 import com.github.pagehelper.Page;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -22,6 +24,9 @@ public class RocketMessageInfoController {
     @Resource
     private RocketMessageInfoService rocketMessageInfoService;
 
+    @Autowired
+    private SaleProducer saleProducer;
+
     /**
      * 通过主键查询单条数据
      *
@@ -36,6 +41,12 @@ public class RocketMessageInfoController {
     @GetMapping("/selectAll")
     public Page<RocketMessageInfo> selectAll(@RequestParam("pageNo") Integer pageNo, @RequestParam("pageSize") Integer pageSize) {
         return rocketMessageInfoService.selectAll(pageNo, pageSize);
+    }
+
+    @GetMapping("/producer")
+    public String sendMessage(@RequestParam("topic") String topic, @RequestParam("msg") String msg) {
+        saleProducer.sendMsg(topic, msg);
+        return "success";
     }
 
 }

@@ -14,3 +14,11 @@ mybatis:
   type-aliases-package: com.child.sale.entity
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+rocketmq:
+  name-server: 127.0.0.1:9876
+  producer:
+    group: SpringProducer
+    topic: SpringTopic
+
+
