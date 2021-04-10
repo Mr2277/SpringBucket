@@ -4,6 +4,8 @@ import com.child.sale.entity.Sale;
 import com.child.sale.dao.SaleDao;
 import com.child.sale.entity.ShoppingFlow;
 import com.child.sale.service.SaleService;
+import com.child.sale.service.rocketmq.SaleProducer;
+import com.child.sale.utils.SerializeUtil;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +25,9 @@ public class SaleServiceImpl implements SaleService {
 
     @Autowired
     private SaleDao saleDao;
+
+    @Autowired
+    private SaleProducer producer;
 
     /**
      * 通过ID查询单条数据
@@ -47,8 +52,9 @@ public class SaleServiceImpl implements SaleService {
         List<Sale> sales = saleDao.queryAllByLimit(offset, limit);
         List<ShoppingFlow> shoppingFlows = sales.stream().map(sale -> transfor(sale))
                 .collect(Collectors.toList());
-        System.out.println(shoppingFlows.size());
-        System.out.println(shoppingFlows.size());
+        for (ShoppingFlow shoppingFlow : shoppingFlows) {
+            producer.sendMsg("sale", shoppingFlow);
+        }
         return sales;
     }
 

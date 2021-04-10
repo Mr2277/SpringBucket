@@ -17,5 +17,7 @@ public class SaleProducer {
         this.rocketMQTemplate.convertAndSend(topic, msg);
     }
 
-
+    public void sendMsg(String topic, Object obj) {
+        rocketMQTemplate.convertAndSend(topic, obj);
+    }
 }
