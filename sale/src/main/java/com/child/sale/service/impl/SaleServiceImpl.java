@@ -3,6 +3,7 @@ package com.child.sale.service.impl;
 import com.child.sale.entity.Sale;
 import com.child.sale.dao.SaleDao;
 import com.child.sale.entity.ShoppingFlow;
+import com.child.sale.entity.User;
 import com.child.sale.service.SaleService;
 import com.child.sale.service.rocketmq.SaleProducer;
 import com.child.sale.utils.SerializeUtil;
@@ -117,5 +118,12 @@ public class SaleServiceImpl implements SaleService {
     @Override
     public String test() {
         return "test";
+    }
+
+    @Override
+    public User insertUser(User user) {
+        user.setId("456");
+        user.setName("sunhao");
+        return user;
     }
 }

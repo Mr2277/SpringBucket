@@ -1,6 +1,7 @@
 package com.child.sale.controller;
 
 import com.child.sale.entity.Sale;
+import com.child.sale.entity.User;
 import com.child.sale.service.SaleService;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,6 +56,11 @@ public class SaleController {
     @GetMapping("/test")
     public String test() {
         return this.saleService.test();
+    }
+
+    @PostMapping("/user")
+    public User insertUser(@RequestBody User user) {
+        return this.saleService.insertUser(user);
     }
 
 }

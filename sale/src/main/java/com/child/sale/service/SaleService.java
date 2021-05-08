@@ -1,6 +1,7 @@
 package com.child.sale.service;
 
 import com.child.sale.entity.Sale;
+import com.child.sale.entity.User;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageInfo;
 
@@ -65,4 +66,6 @@ public interface SaleService {
     PageInfo<Sale> selectByPage(Integer pageSize, Integer pageNo);
 
     String test();
+
+    User insertUser(User user);
 }
