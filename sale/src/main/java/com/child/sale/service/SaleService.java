@@ -64,4 +64,5 @@ public interface SaleService {
      */
     PageInfo<Sale> selectByPage(Integer pageSize, Integer pageNo);
 
+    String test();
 }

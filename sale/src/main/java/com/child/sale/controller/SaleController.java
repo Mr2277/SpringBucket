@@ -52,4 +52,9 @@ public class SaleController {
         return this.saleService.queryAllByLimit(offset, limit);
     }
 
+    @GetMapping("/test")
+    public String test() {
+        return this.saleService.test();
+    }
+
 }

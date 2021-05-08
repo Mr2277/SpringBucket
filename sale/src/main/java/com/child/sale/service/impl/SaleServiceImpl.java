@@ -113,4 +113,9 @@ public class SaleServiceImpl implements SaleService {
         PageInfo<Sale> pageInfo = new PageInfo<>(sales);
         return pageInfo;
     }
+
+    @Override
+    public String test() {
+        return "test";
+    }
 }
